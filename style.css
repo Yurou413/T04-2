@@ -1,0 +1,311 @@
+/*  CSS variables & reset  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Reusable CSS variables for colors, shadows and border radius. */
+:root {
+  --logo-dark: #6b4f2c;      /* brown from logo outline */
+  --logo-accent: #e68a2e;    /* orange bolt */
+  --logo-light: #fef7e0;     /* pale yellow background */
+  --logo-grey: #7a6a5a;     /* grey text */
+  --shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+  --radius: 16px;
+}
+
+body {
+  background: #fefcf5;
+  color: #2e2b26;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;   /* 100% of viewport height */
+}
+
+/*  Top navigation  */
+.top-nav {
+  background: #3d2c18;
+  padding: 0.8rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer; /* Make the logo clickable */
+  padding: 0;
+}
+
+.logo-container:hover {
+  transform: scale(1.02); /* Slightly enlarge the logo on hover */
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain; /* Ensure the logo fits wihtin the container without stretched or cropped. */
+  display: block;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.nav-links {
+  display: flex; /* Place button in a row */
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  padding: 0.7rem 1.6rem;
+  border-radius: 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f5ead7;
+  cursor: pointer; /* Shows the pointer cursor when hovering  */
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* When hovering over a non-active navigation button */
+.nav-btn:hover:not(.active) {
+  background: rgba(230,138,46,0.25);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(230, 138, 46, 0.3);
+}
+
+/* Active navigation button */
+.nav-btn.active {
+  background: var(--logo-dark);
+  color: white;
+  box-shadow: 0 6px 12px rgba(107, 79, 44, 0.3);
+  border: 1px solid var(--logo-accent); /* Thin orange border */
+}
+
+/* icon */
+/*.nav-btn i {
+  font-size: 1rem;
+}*/
+
+
+/*  Main content  */
+.container {
+  max-width: 1300px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  flex: 1; /* Allow the container to grow and fill available space */
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--logo-dark);
+  margin-bottom: 0.5rem;
+  border-left: 8px solid var(--logo-accent);
+  padding-left: 1.2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--logo-dark);
+  margin: 1.5rem 0 1rem;
+  font-weight: 600;
+}
+
+
+/*  Cards  */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin: 2rem 0;
+}
+
+.card {
+  background: white;
+  padding: 1.8rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 5px solid var(--logo-accent); /* 5px orange border at the top of the card */
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px); /* Slightly lift the card on hover */
+}
+
+.card i {
+  font-size: 2rem;
+  color: var(--logo-accent);
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  color: var(--logo-dark);
+  margin-bottom: 0.7rem;
+  font-size: 1.3rem;
+}
+
+.card p {
+  color: #3d352c;
+  line-height: 1.5;
+}
+
+/*  Footer  */
+footer {
+  text-align: center;
+  padding: 1.8rem 2rem;
+  background: #3d2c18;
+  border-top: 2px solid #efe3d0;
+  color: #e8d9c0;
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+footer p {
+  margin: 0.3rem 0;
+}
+
+footer strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.genai-note {
+  font-size: 0.9rem;
+  background: rgba(230, 138, 46, 0.15);
+  display: inline-block; /* Make the note box fit its content */
+  padding: 0.4rem 1.2rem;
+  border-radius: 30px;
+  margin-top: 8px;
+}
+
+.genai-note i {
+  color: var(--logo-accent);
+}
+
+/*  Responsive  */
+@media (max-width: 700px) {
+  .top-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .nav-links {
+    margin-left: 0;
+    justify-content: center;
+  }
+  .logo-container {
+    justify-content: center;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/*  Note box (placeholder notice)  */
+.note-box {
+  background: #fef7e8;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border-left: 6px solid var(--logo-accent);
+}
+
+.note-box i {
+  color: var(--logo-accent);
+  margin-right: 6px;
+}
+
+/*  Data story intro paragraph  */
+.data-story-intro {
+  margin-bottom: 1.5rem;
+  color: var(--logo-grey);
+}
+
+/*  Chart sections  */
+.chart-section {
+  margin-bottom: 2rem;
+}
+
+.chart-section h3 {
+  color: var(--logo-dark);
+  margin-bottom: 0.5rem;
+}
+
+/*  Chart box (holds the KNIME PNG image)  */
+.chart-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 1.2rem 0 2rem;
+  text-align: center;
+}
+
+.chart-box img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+
+/*Conclusion*/
+.conclusion-heading {
+  margin-top: 2.5rem;
+}
+
+.conclusion-card {
+  border-top-color: var(--logo-dark);
+}
+
+.conclusion-card p {
+  line-height: 1.6;
+}
+
+
+
+/*  About page  */
+.intro-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #2e2b26;
+  margin-bottom: 2rem;
+
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Responsive grid layout */
+  gap: 1.8rem;
+  margin: 2rem 0 2.5rem;
+}
+
+.about-footer-note {
+  color: var(--logo-grey);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+.about-footer-note strong {
+  color: var(--logo-dark);
+}
