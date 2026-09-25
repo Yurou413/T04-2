@@ -14,30 +14,14 @@
 
 <!-- Main content -->
 <main class="container">
-    <h1>Appliance Energy Use in Australia</h1>
-    <p class="intro-text">
-        A simple look at how household appliances use electricity in the Australian market.
-    </p>
-
-    <div class="about-grid">
-        <div class="card">
-            <i class="fas fa-star"></i>
-            <h3>Star ratings</h3>
-            <p>Energy labels use star ratings so you can compare appliance efficiency at a glance.</p>
-        </div>
-
-        <div class="card">
-            <i class="fas fa-plug"></i>
-            <h3>Standby power</h3>
-            <p>Many appliances keep using power even when switched off. Unplugging them or turning them off at the wall saves energy.</p>
-        </div>
-
-        <div class="card">
-            <i class="fas fa-leaf"></i>
-            <h3>Running costs</h3>
-            <p>More efficient appliances usually cost less to run over their lifetime.</p>
-        </div>      
-    </div>
+    
+    <h1>Appliance Energy Consumption</h1>
+    <div id="content"></div>
+    <!-- Give the SVG a size so shapes can be seen -->
+    <svg width="300" height="150"></svg>
+    <!-- Load D3 first, then your D3 code file -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="energy-d3.js"></script>
 
 </main>
 
