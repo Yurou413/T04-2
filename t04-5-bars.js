@@ -1,10 +1,11 @@
 // t04-5-bars.js
 const createBarChart = (data) => {
 // --- Sizes (logical vs. display) ---
-const viewW = 500;
+const viewW = 540;
 const viewH = Math.max(220, data.length * 28);
 const displayW = 640;
 const displayH = Math.min(480, data.length * 24 + 40);
+
 // --- SVG root ---
 const svg = d3.select(".responsive-svg-container")
 .append("svg")
@@ -12,16 +13,19 @@ const svg = d3.select(".responsive-svg-container")
 .attr("width", displayW)
 .attr("height", displayH)
 .style("border", "1px solid #ccc");
+
 // --- Scales (from T04-6) ---
 const xMax = d3.max(data, d => d.count);
 const xScale = d3.scaleLinear()
 .domain([0, xMax])
-.range([0, viewW]);
+.range([0, viewW - 120]); // Leave a space on the right for labels
+
 const yScale = d3.scaleBand()
-.domain(data.map(d => d.brand)) 
+.domain(data.map(d => d.brand)) // Seperates the brand names
 .range([0, viewH])
-.paddingInner(0.2)
-.paddingOuter(0.1);
+.paddingInner(0.3)
+.paddingOuter(0.3);
+
 // OLD rectangle-only drawing block from T04-6 (COMMENTED OUT for T04-7). //
 /* svg.selectAll("rect")
 .data(data)
@@ -34,7 +38,7 @@ const yScale = d3.scaleBand()
 */
 // --- NEW in T04-7: group per row (bar + labels move together) ---
 // Using x = 100 so labels align at 100 and bars start there too.
-const labelX = 100;
+const labelX = 130;
 const barAndLabel = svg
 .selectAll("g")
 .data(data)
@@ -42,14 +46,18 @@ const barAndLabel = svg
 .attr("transform", d => `translate(0, ${yScale(d.brand)})`);
 // --- Bar rectangle inside the group ---
 // y is 0 because the group sets vertical position via transform.
+
+// The Bar Rectangle
 barAndLabel
 .append("rect")
-.attr("x", labelX) // bar starts at x = 100
+.attr("x", labelX) // bar starts at x = 130
 .attr("y", 0)
 .attr("width", d => xScale(d.count)) // scaled width fits the viewBox
 .attr("height", yScale.bandwidth()) // bar thickness from band scale
 .attr("fill", "steelblue");
 // --- Category text (left of bar, right-aligned at x=100) ---
+
+// The Value Text
 barAndLabel
 .append("text")
 .text(d => d.brand) // change if your category column differs
